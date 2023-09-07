@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">   
+        <link href="styles.css" rel="stylesheet" type="text/css"/>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    </head>
+    <body>
+
+        <nav class="navbar navbar-expand-sm navbar-dark bg-success" id="navbar">
+            <div class="container-fluid col-md-10">
+                <a class="navbar-brand" href="#">
+                    <div th:if="${opcionEditar == 0}">
+                        <p class="fs-4 text-black fw-bold align-bottom my-3" >Crear Usuario</p>
+                    </div>
+                    <div th:if="${opcionEditar == 1}">
+                        <p class="fs-4 text-black fw-bold align-bottom my-3" >Editar Usuario</p>
+                    </div>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon">
+                    </span>
+                </button>
+            </div>
+        </nav>
+
+        <div th:if="${opcionEditar == 1}" id='center' class="main center">
+            <form action="actualizarUsuario" method="POST">
+                <div class="mb-3" style="display: none">
+                    <label>idUsuario</label>
+                    <input type="text" class="form-control" placeholder="id" name="idUsuario" th:value="${usuario.idUsuario}">
+                </div>
+                <div class="mb-3" style="display: none">
+                    <label>idUsuario</label>
+                    <input type="text" class="form-control" placeholder="id" name="idPersona" th:value="${usuario.idPersona.idPersona}">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" th:value="${usuario.idPersona.nombre}" required="true">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" placeholder="Apellido" name="apellido" th:value="${usuario.idPersona.apellido}" required="true">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-envelope-fill"></i>
+                    <label>Email</label>
+                    <input type="text" class="form-control" placeholder="Email" name="email" th:value="${usuario.idPersona.email}" required="true">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-telephone-fill"></i>
+                    <label>Telefono</label>
+                    <input type="text" class="form-control" placeholder="Telefono" name="telefono" th:value="${usuario.idPersona.telefono}" required="true">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Nombre usuario</label>
+                    <input type="text" class="form-control" placeholder="Nombre usuario" name="nombreUsuario" th:value="${usuario.nombreUsuario}" required="true">
+                </div>
+                <div class="mb-3">
+                    <label>Estado</label>
+                    <select class="form-select" name="estado" required="required">
+                        <div th:if="${usuario.estado == 1}">
+                            <option value="1" selected>Activo</option>
+                            <option value="0">Inactivo</option>
+                        </div>
+                        <div th:if="${usuario.estado == 0}">
+                            <option value="0" selected>Inactivo</option>
+                            <option value="1">Activo</option>
+                        </div>
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-lock-fill"></i>
+                    <label>Clave</label>
+                    <input type="password" class="form-control" placeholder="Clave" name="clave" th:value="${usuario.clave}" required="true">
+                </div>
+                <input class="btn btn-secondary btn btn-dark" type="submit" value="Actualizar">
+                <a class="btn btn-danger" href="/listadoUsuario">Cancelar</a>
+            </form>
+        </div>
+
+        <!--CREAR USUARIO-->
+        <div th:if="${opcionEditar == 0}" id='center' class="main center">
+            <form action="registrarUsuario" method="POST">
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Nombre</label>
+                    <input type="text" class="form-control" placeholder="Nombre" name="nombre" required="required">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Apellido</label>
+                    <input type="text" class="form-control" placeholder="Apellido" name="apellido" required="required">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-envelope-fill"></i>
+                    <label>Email</label>
+                    <input type="text" class="form-control" placeholder="Email" name="email" required="required">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-telephone-fill"></i>
+                    <label>Telefono</label>
+                    <input type="text" class="form-control" placeholder="Telefono" name="telefono" required="required">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-person-fill"></i>
+                    <label>Nombre usuario</label>
+                    <input type="text" class="form-control" placeholder="Nombre usuario" name="nombreUsuario" required="required">
+                </div>
+                <div class="mb-3">
+                    <i class="bi bi-lock-fill"></i>
+                    <label>Clave</label>
+                    <input type="password" class="form-control" placeholder="Clave" name="clave">
+                </div>
+                <input class="btn btn-secondary btn btn-dark" type="submit" value="Crear">
+                <a class="btn btn-danger" href="/listadoUsuario">Cancelar</a>
+            </form>
+        </div>
+    </body>
+</html>
