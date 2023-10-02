@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class AreaTrabajoController {
 
-    
+    //para brobar.
     @Autowired
     private IAreaTrabajoService dataAreaTrabajo;
 
